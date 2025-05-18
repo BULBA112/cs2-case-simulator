@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Case Opening</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="case-opening">Открытие кейсов</button>
+                <button class="tab-button" data-tab="clicker">Заработок</button>
+                <button class="tab-button" data-tab="inventory">Инвентарь</button>
+                <button class="tab-button" data-tab="leaderboard">Рекордсмены</button>
+                <button class="tab-button" data-tab="referral">Реферальная система</button>
+            </div>
+            <div class="balance">
+                <span>Баланс: </span>
+                <span id="balance">1000</span>
+                <span>₽</span>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div id="case-opening" class="tab-pane active">
+                <div class="case-container">
+                    <div class="cases-grid">
+                        <div class="case" data-case="dreams">
+                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg/256fx256f" alt="Dreams & Nightmares Case">
+                            <div class="case-info">
+                                <h2>Dreams & Nightmares Case</h2>
+                                <p class="price">499₽</p>
+                            </div>
+                            <button class="open-button">Открыть кейс</button>
+                            <button class="show-contents-button">Показать содержимое</button>
+                        </div>
+                        <div class="case" data-case="danger">
+                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg/256fx256f" alt="Danger Zone Case">
+                            <div class="case-info">
+                                <h2>Danger Zone Case</h2>
+                                <p class="price">399₽</p>
+                            </div>
+                            <button class="open-button">Открыть кейс</button>
+                            <button class="show-contents-button">Показать содержимое</button>
+                        </div>
+                        <div class="case" data-case="fracture">
+                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFUuh6qZJmlD7tiyl4OIlaGhYuLTzjhVupJ12urH89ii3lHlqEdoMDr2I5jVLFFSv_J2Rg/256fx256f" alt="Fracture Case">
+                            <div class="case-info">
+                                <h2>Fracture Case</h2>
+                                <p class="price">449₽</p>
+                            </div>
+                            <button class="open-button">Открыть кейс</button>
+                            <button class="show-contents-button">Показать содержимое</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-opening-header">
+                    <h2>Открытие кейса</h2>
+                    <div class="selected-case-info">
+                        <img id="selected-case-image" src="" alt="Selected Case">
+                        <div class="case-details">
+                            <h3 id="selected-case-name"></h3>
+                            <p class="price">Цена: <span id="selected-case-price"></span>₽</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="roulette-container">
+                    <div class="roulette">
+                        <div class="items-container"></div>
+                    </div>
+                </div>
+
+                <div id="case-contents" style="display: none;">
+                    <h2>Содержимое кейса</h2>
+                    <div class="rarity-section">
+                        <h3>Тайные</h3>
+                        <div class="covert-items"></div>
+                    </div>
+                    <div class="rarity-section">
+                        <h3>Засекреченные</h3>
+                        <div class="classified-items"></div>
+                    </div>
+                    <div class="rarity-section">
+                        <h3>Запрещённые</h3>
+                        <div class="restricted-items"></div>
+                    </div>
+                    <div class="rarity-section">
+                        <h3>Армейские</h3>
+                        <div class="milspec-items"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="clicker" class="tab-pane">
+                <div class="clicker-container">
+                    <div class="clicker-stats">
+                        <div class="stat">
+                            <span>Монет за клик: </span>
+                            <span id="clickValue">1</span>
+                        </div>
+                        <div class="stat">
+                            <span>Монет в секунду: </span>
+                            <span id="autoClickValue">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="clicker-area">
+                        <div id="clickerButton" class="clicker-button">
+                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopamie19f0Ob3Yi5FvISJkJKKkPr1Ibnum25V4dB8xLyXpI7w3AE5-0RtZzqiJYKdcQU4Y1_X_1W_k-_vjZTt7pzLmnNn6XQj-z-DyALmm9CS/360fx360f" alt="Click me!">
+                        </div>
+                    </div>
+                    
+                    <div class="upgrades">
+                        <div id="clickUpgrade" class="upgrade-item">
+                            <div class="upgrade-info">
+                                <h4>Улучшить клик</h4>
+                                <p>Увеличивает количество монет за клик</p>
+                                <p class="price">Цена: <span id="clickUpgradePrice">10</span>₽</p>
+                            </div>
+                            <button class="upgrade-button">Улучшить</button>
+                        </div>
+                        <div id="autoClickUpgrade" class="upgrade-item">
+                            <div class="upgrade-info">
+                                <h4>Улучшить авто-клик</h4>
+                                <p>Увеличивает количество монет в секунду</p>
+                                <p class="price">Цена: <span id="autoClickUpgradePrice">50</span>₽</p>
+                            </div>
+                            <button class="upgrade-button">Улучшить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="inventory" class="tab-pane">
+                <div class="inventory">
+                    <div class="inventory-controls">
+                        <h2>Ваш инвентарь</h2>
+                        <button id="sellAll" class="button">Продать всё</button>
+                    </div>
+                    <div id="inventoryItems" class="inventory-items"></div>
+                </div>
+            </div>
+
+            <div id="leaderboard" class="tab-pane">
+                <div class="leaderboard-container">
+                    <h2>Топ игроков</h2>
+                    <div class="leaderboard-categories">
+                        <button class="category-button active" data-category="balance">По балансу</button>
+                        <button class="category-button" data-category="inventory">По стоимости инвентаря</button>
+                        <button class="category-button" data-category="cases">По открытым кейсам</button>
+                    </div>
+                    <div class="leaderboard-list"></div>
+                </div>
+            </div>
+
+            <div id="referral" class="tab-pane">
+                <div class="referral-page">
+                    <div class="referral-header">
+                        <h2>Реферальная система</h2>
+                        <p class="referral-description">Приглашайте друзей и получайте бонусы! За каждого приглашенного друга вы получите 250₽, а ваш друг получит 500₽ на старте.</p>
+                    </div>
+                    
+                    <div class="referral-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Приглашено друзей</h3>
+                            <p id="referralCount">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-coins"></i>
+                            <h3>Заработано с рефералов</h3>
+                            <p id="referralEarnings">0₽</p>
+                        </div>
+                    </div>
+                    
+                    <div class="referral-code-section">
+                        <h3>Ваш реферальный код</h3>
+                        <div class="code-container">
+                            <span id="referralCode" class="referral-code"></span>
+                            <button id="copyCode" class="copy-code-button">
+                                <i class="fas fa-copy"></i> Копировать
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="activate-code-section">
+                        <h3>Активировать код друга</h3>
+                        <div class="activate-container">
+                            <input type="text" id="referralInput" placeholder="Введите реферальный код" maxlength="6">
+                            <button id="activateReferral" class="activate-button">Активировать</button>
+                        </div>
+                    </div>
+                    
+                    <div class="referral-info-cards">
+                        <div class="info-card">
+                            <i class="fas fa-gift"></i>
+                            <h4>Бонус другу</h4>
+                            <p>500₽ на старте</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-coins"></i>
+                            <h4>Ваш бонус</h4>
+                            <p>250₽ за каждого друга</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-infinity"></i>
+                            <h4>Без ограничений</h4>
+                            <p>Приглашайте сколько угодно друзей</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
