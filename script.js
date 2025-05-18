@@ -14,7 +14,9 @@ let gameData = {
     referralBonus: 0,
     referredBy: null,
     referralCount: 0,
-    totalReferralBonus: 0
+    totalReferralBonus: 0,
+    lastLoginDate: null,
+    accountCreated: false
 };
 
 // Флаг для отслеживания состояния вращения
@@ -224,18 +226,24 @@ const demoPlayers = [
 
 // Загрузка сохранения
 function loadGame() {
-    if (gameData.playerName) {
-        const savedData = localStorage.getItem(`cs2CaseGameData_${gameData.playerName}`);
+    const savedPlayerName = localStorage.getItem('lastPlayerName');
+    if (savedPlayerName) {
+        const savedData = localStorage.getItem(`cs2CaseGameData_${savedPlayerName}`);
         if (savedData) {
             gameData = { ...gameData, ...JSON.parse(savedData) };
+            gameData.lastLoginDate = new Date().toISOString();
             updateUI();
+            return true;
         }
     }
+    return false;
 }
 
 // Сохранение игры
 function saveGame() {
     if (gameData.playerName) {
+        gameData.lastLoginDate = new Date().toISOString();
+        localStorage.setItem('lastPlayerName', gameData.playerName);
         localStorage.setItem(`cs2CaseGameData_${gameData.playerName}`, JSON.stringify(gameData));
     }
 }
@@ -1018,16 +1026,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Запрашиваем имя игрока при первом запуске
 function initializePlayer() {
-    if (!gameData.playerName) {
+    // Пробуем загрузить существующий аккаунт
+    if (loadGame()) {
+        initializeReferralSystem();
+        return;
+    }
+
+    // Если существующий аккаунт не найден, создаем новый
+    if (!gameData.accountCreated) {
         const name = prompt('Введите ваше имя для таблицы рекордов:');
         if (name) {
-            gameData.playerName = name;
-            gameData.referralCode = generateReferralCode();
-            saveGame();
+            const existingData = localStorage.getItem(`cs2CaseGameData_${name}`);
+            if (existingData) {
+                // Если аккаунт с таким именем уже существует
+                if (confirm('Аккаунт с таким именем уже существует. Хотите войти в него?')) {
+                    gameData = { ...gameData, ...JSON.parse(existingData) };
+                    updateUI();
+                } else {
+                    initializePlayer(); // Просим ввести другое имя
+                    return;
+                }
+            } else {
+                // Создаем новый аккаунт
+                gameData.playerName = name;
+                gameData.referralCode = generateReferralCode();
+                gameData.accountCreated = true;
+                gameData.lastLoginDate = new Date().toISOString();
+                saveGame();
+            }
             initializeReferralSystem();
+        } else {
+            initializePlayer(); // Если имя не введено, просим ввести снова
         }
-    } else {
-        initializeReferralSystem();
     }
 }
 
