@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import io, { Socket } from 'socket.io-client';
 import './App.css';
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
+
 interface Message {
   id: number;
   text: string;
@@ -23,7 +25,7 @@ function App() {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io(SERVER_URL);
     setSocket(newSocket);
 
     newSocket.on('message:receive', (message: Message) => {
