@@ -1,0 +1,110 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fff0f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #ffb6d5;
+    padding: 20px 0;
+    text-align: center;
+}
+header h1 {
+    margin: 0 0 10px 0;
+    color: #a8005b;
+}
+nav a {
+    color: #a8005b;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+nav a:hover {
+    color: #ff69b4;
+}
+section {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px #ffd6e6;
+    padding: 30px;
+}
+h2 {
+    color: #a8005b;
+    margin-top: 0;
+}
+ul {
+    padding-left: 20px;
+}
+.portfolio-gallery {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.portfolio-gallery img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #ffd6e6;
+    transition: transform 0.2s;
+}
+.portfolio-gallery img:hover {
+    transform: scale(1.08);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+input, select, button {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ffb6d5;
+    font-size: 1em;
+}
+button {
+    background: #ffb6d5;
+    color: #a8005b;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+button:hover {
+    background: #ff69b4;
+    color: #fff;
+}
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #ffb6d5;
+    color: #a8005b;
+    margin-top: 40px;
+}
+@media (max-width: 800px) {
+    section {
+        margin: 20px 8px;
+        padding: 16px;
+    }
+    .portfolio-gallery img {
+        width: 90px;
+        height: 90px;
+    }
+}
+#bookingsTable th, #bookingsTable td {
+    border: 1px solid #ffb6d5;
+    padding: 6px 10px;
+    text-align: center;
+}
+#bookingsTable th {
+    background: #ffe0ef;
+    color: #a8005b;
+}
+#bookingsTable tr:nth-child(even) {
+    background: #fff6fa;
+} 
